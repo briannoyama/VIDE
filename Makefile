@@ -20,7 +20,7 @@ linux-debug:
 	@xhost -local:
 
 linux-ide:
-	@xhost +local:gamer
+	@xhost +local:
 	@podman run \
 	  --device /dev/dri \
 	  --env=DISPLAY \
@@ -34,7 +34,7 @@ linux-ide:
 	  --volume=/tmp/.X11-unix:/tmp/.X11-unix \
 	  --workdir /root \
 	  'nvchad' nvim
-	@xhost -local:gamer
+	@xhost -local:
 
 clean:
 	podman rmi nvchad
