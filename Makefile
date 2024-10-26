@@ -1,4 +1,4 @@
-build: Containerfile
+build:
 	podman build . -t nvchad
 	
 linux-debug:

@@ -20,3 +20,4 @@ Containerized Neovim setup for golang based on [dreamsofcode-io/neovim-go-config
 
 - This implementation avoids [mason](https://github.com/williamboman/mason.nvim), since it does not load packages synchronously making it difficult to use in container run commands.
 - Several packages related to game programming are installed, along with other customizations like my preferred PS1.
+- There is currently an issue with the PS1 where the container does not correctly line wrap.
