@@ -14,6 +14,7 @@ linux-debug:
 	  --volume=$$HOME/Development/go:/root/go \
 	  --volume=./custom:/root/.config/nvim/lua/custom \
 	  --volume=$$HOME/.ssh/:/root/.ssh/ \
+	  --volume=$$HOME/.cache/:/root/.cache/ \
 	  --volume=/tmp/.X11-unix:/tmp/.X11-unix \
 	  --workdir /root \
 	  'nvchad'
@@ -21,7 +22,7 @@ linux-debug:
 
 linux-ide:
 	@xhost +local:
-	@podman run \
+	-@podman run \
 	  --device /dev/dri \
 	  --env=DISPLAY \
 	  --env=TERM=xterm \
@@ -31,9 +32,10 @@ linux-ide:
 	  --tty \
 	  --volume=$$HOME/Development/go:/root/go \
 	  --volume=$$HOME/.ssh/:/root/.ssh/ \
+	  --volume=$$HOME/.cache/:/root/.cache/ \
 	  --volume=/tmp/.X11-unix:/tmp/.X11-unix \
-	  --workdir /root \
-	  'nvchad' nvim
+	  --workdir /root/$$BASE \
+	  'nvchad' bash -exec 'source .bashrc && nvim'
 	@xhost -local:
 
 clean:

@@ -40,6 +40,6 @@ COPY ./custom /root/.config/nvim/lua/custom
 RUN nvim --headless +qall
     
 RUN echo '\n'"source /etc/bash_completion.d/git-prompt"\
-    '\n'PS1="'"'\\[\\e[1;35m\\]\\u@dev\\[\\e[0;37m\\] \\[\\e[7;37m\\]$(__git_ps1 "%s")\\[\\e[0;37m\\] \\[\\e[1;34m\\]\\w\\[\\e[m\\] \\$ '"'" >> /root/.bashrc \
-    && echo 'PATH=/root/go/bin:$PATH' >> /root/.bashrc
+    '\nexport 'PS1="'"'\\[\\e[1;35m\\]\\u@dev\\[\\e[0;37m\\] \\[\\e[7;37m\\]$(__git_ps1 "%s")\\[\\e[0;37m\\] \\[\\e[1;34m\\]\\w\\[\\e[m\\] \\$ '"'" >> /root/.bashrc \
+    && echo 'export PATH=/root/go/bin:$PATH\n'"$(cat /root/.bashrc)" > /root/.bashrc
 

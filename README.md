@@ -4,7 +4,7 @@ VIDE
 USAGE
 -----
 
-Made for `podman`. Requires `podman`, `docker` or other OCI implementation. Run the following in the base directory:
+Made for `podman`. Requires `podman`, `docker` or other OCI implementation (as well as a terminal with Nerdfont support). Run the following in the base directory:
 
 - `make` (or `make build`) : build the docker image
 - `make linux-debug` : run in a manner allowing modification of the custom lua configs + other commands
