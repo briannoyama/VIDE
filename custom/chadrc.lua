@@ -4,7 +4,12 @@ vim.o.shell = "/usr/bin/bash"
 
 ---@type ChadrcConfig
  local M = {}
- M.ui = {theme = 'nightfox'}
+ M.ui = {
+   theme = 'nightfox',
+   theme_toggle = { "nightfox", "yoru" },
+  }
+
+
  M.plugins = "custom.plugins"
  M.mappings = require "custom.mappings"
  return M

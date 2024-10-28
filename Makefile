@@ -35,7 +35,7 @@ linux-ide:
 	  --volume=$$HOME/.cache/:/root/.cache/ \
 	  --volume=/tmp/.X11-unix:/tmp/.X11-unix \
 	  --workdir /root/$$BASE \
-	  'nvchad' bash -exec 'source .bashrc && nvim'
+	  'nvchad' bash -exec 'source /root/.bashrc && nvim'
 	@xhost -local:
 
 clean:
