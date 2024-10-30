@@ -4,6 +4,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require("lspconfig")
 local util = require("lspconfig/util")
 
+
 lspconfig.gopls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -13,6 +14,7 @@ lspconfig.gopls.setup {
   settings = {
     gopls = {
       completeUnimported = true,
+      semanticTokens = true,
       usePlaceholders = true,
       analyses = {
         unusedparams = true,
