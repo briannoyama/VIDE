@@ -31,13 +31,16 @@ vim.api.nvim_create_autocmd('VimEnter', {
 vim.o.shell = "/usr/bin/bash"
 
 ---@type ChadrcConfig
- local M = {}
- M.ui = {
-   theme = 'nightfox',
-   theme_toggle = { "nightfox", "yoru" },
+local M = {}
+M.ui = {
+  theme = 'nightfox',
+  theme_toggle = { "nightfox", "yoru" },
+  statusline= {
+    theme = "default",
+    separator_style = "default",
+    overriden_modules = require "custom.configs.hydra-status",
   }
+}
 
-
- M.plugins = "custom.plugins"
- M.mappings = require "custom.mappings"
- return M
+M.plugins = "custom.plugins"
+return M

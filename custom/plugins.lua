@@ -37,6 +37,12 @@ local plugins = {
       vim.cmd [[silent! GoInstallDeps]]
     end,
   },
+  {
+    "nvimtools/hydra.nvim",
+    config = function()
+      require "custom.configs.hydras"
+    end
+  }
 }
 
 return plugins
