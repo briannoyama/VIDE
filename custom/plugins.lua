@@ -17,7 +17,8 @@ local plugins = {
   {
     "mfussenegger/nvim-dap",
     init = function()
-      require("core.utils").load_mappings("dap")
+      -- Dap mappings moved to hydras
+      -- require("core.utils").load_mappings("dap")
     end
   },
   {
