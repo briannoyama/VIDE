@@ -1,11 +1,5 @@
 local plugins = {
-  -- {
-  --   "jose-elias-alvarez/null-ls.nvim",
-  --   ft = "go",
-  --   opts = function()
-  --     return require "custom.configs.null-ls"
-  --   end,
-  -- },
+  require "custom.configs.avante",
   {
     "leoluz/nvim-dap-go",
     ft = "go",
@@ -17,7 +11,7 @@ local plugins = {
   {
     "mfussenegger/nvim-dap",
     init = function()
-      vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })
+      vim.fn.sign_define("DapBreakpoint", { text = "🛑" })
     end,
   },
   {
@@ -33,7 +27,6 @@ local plugins = {
       require "custom.configs.lspconfig"
     end,
   },
-  --{ "nvim-neotest/nvim-nio" },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {

@@ -6,6 +6,8 @@ linux-debug:
 	-@podman run \
 	  --device /dev/dri \
 	  --env=DISPLAY \
+	  --env=GEMINI_API_KEY \
+	  --env=GEMINI_MODEL \
 	  --env=TERM=xterm \
 	  --interactive \
 	  --net=host \
@@ -26,6 +28,8 @@ linux-ide:
 	-@podman run \
 	  --device /dev/dri \
 	  --env=DISPLAY \
+	  --env=GEMINI_API_KEY \
+	  --env=GEMINI_MODEL \
 	  --env=TERM=xterm \
 	  --interactive \
 	  --net=host \
