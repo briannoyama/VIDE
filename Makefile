@@ -1,8 +1,8 @@
 build:
-	podman build . -t nvchad
-	
+	podman build . -t ide
+
 linux-debug:
-	@xhost +local:
+	-@xhost +local:
 	-@podman run \
 	  --device /dev/dri \
 	  --env=DISPLAY \
@@ -11,17 +11,18 @@ linux-debug:
 	  --net=host \
 	  --rm \
 	  --tty \
+	  --volume=./:/root/VIDE \
 	  --volume=$$HOME/Development/go:/root/go \
 	  --volume=./custom:/root/.config/nvim/lua/custom \
 	  --volume=$$HOME/.ssh/:/root/.ssh/ \
 	  --volume=$$HOME/.cache/:/root/.cache/ \
 	  --volume=/tmp/.X11-unix:/tmp/.X11-unix \
 	  --workdir /root \
-	  'nvchad'
-	@xhost -local:
-
+	  'ide'
+	-@xhost -local:
+	
 linux-ide:
-	@xhost +local:
+	-@xhost +local:
 	-@podman run \
 	  --device /dev/dri \
 	  --env=DISPLAY \
@@ -35,8 +36,8 @@ linux-ide:
 	  --volume=$$HOME/.cache/:/root/.cache/ \
 	  --volume=/tmp/.X11-unix:/tmp/.X11-unix \
 	  --workdir /root/$$BASE \
-	  'nvchad' bash -exec 'source /root/.bashrc && nvim'
-	@xhost -local:
+	  'ide' bash -exec 'source /root/.bashrc && nvim'
+	-@xhost -local:
 
 clean:
-	podman rmi nvchad
+	podman rmi ide 

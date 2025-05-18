@@ -1,25 +1,30 @@
 local plugins = {
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    ft = "go",
-    opts = function()
-      return require "custom.configs.null-ls"
-    end,
-  },
+  -- {
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   ft = "go",
+  --   opts = function()
+  --     return require "custom.configs.null-ls"
+  --   end,
+  -- },
   {
     "leoluz/nvim-dap-go",
     ft = "go",
     dependencies = "mfussenegger/nvim-dap",
     config = function(_, opts)
       require("dap-go").setup(opts)
-    end
+    end,
   },
   {
     "mfussenegger/nvim-dap",
     init = function()
-      -- Dap mappings moved to hydras
-      -- require("core.utils").load_mappings("dap")
-    end
+      vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })
+    end,
+  },
+  {
+    "nvimtools/hydra.nvim",
+    config = function()
+      require "custom.configs.hydras"
+    end,
   },
   {
     "neovim/nvim-lspconfig",
@@ -27,6 +32,16 @@ local plugins = {
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end,
+  },
+  --{ "nvim-neotest/nvim-nio" },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "go",
+        "gomod",
+      },
+    },
   },
   {
     "olexsmir/gopher.nvim",
@@ -39,11 +54,27 @@ local plugins = {
     end,
   },
   {
-    "nvimtools/hydra.nvim",
-    config = function()
-      require "custom.configs.hydras"
-    end
-  }
+    "stevearc/conform.nvim",
+    cmd = { "ConformInfo" },
+    event = "BufWritePre",
+    opts = require "custom.configs.conform",
+    init = function()
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    init = function()
+      require("nvim-dap-virtual-text").setup {
+        commented = true,
+        virt_text_pos = "eol",
+      }
+    end,
+  },
 }
 
 return plugins
