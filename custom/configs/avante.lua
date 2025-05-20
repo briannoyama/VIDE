@@ -2,6 +2,26 @@ return {
   "yetone/avante.nvim",
   event = "VeryLazy",
   version = false, -- Never set this value to "*"! Never!
+  keys = {
+    {
+      "<leader>a+",
+      function()
+        local tree_ext = require "avante.extensions.nvim_tree"
+        tree_ext.add_file()
+      end,
+      desc = "Select file in NvimTree",
+      ft = "NvimTree",
+    },
+    {
+      "<leader>a-",
+      function()
+        local tree_ext = require "avante.extensions.nvim_tree"
+        tree_ext.remove_file()
+      end,
+      desc = "Deselect file in NvimTree",
+      ft = "NvimTree",
+    },
+  },
   opts = {
     provider = "gemini",
 
@@ -11,6 +31,9 @@ return {
       -- model = "gemini-2.5-flash-preview-04-17",
       temperature = 0,
       max_tokens = 4096,
+    },
+    selector = {
+      exclude_auto_select = { "NvimTree" },
     },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
