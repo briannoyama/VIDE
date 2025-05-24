@@ -31,8 +31,13 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
+        "bash",
         "go",
         "gomod",
+        "hcl",
+        "python",
+        "terraform",
+        "typescript",
       },
     },
   },
