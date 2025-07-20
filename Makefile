@@ -14,7 +14,7 @@ linux-debug:
 	  --rm \
 	  --tty \
 	  --volume=./:/root/VIDE \
-	  --volume=$$HOME/Development/go:/root/go \
+	  --volume=$$HOME/Development:/root/Development \
 	  --volume=./custom:/root/.config/nvim/lua/custom \
 	  --volume=$$HOME/.ssh/:/root/.ssh/ \
 	  --volume=$$HOME/.cache/:/root/.cache/ \
@@ -35,7 +35,7 @@ linux-ide:
 	  --net=host \
 	  --rm \
 	  --tty \
-	  --volume=$$HOME/Development/go:/root/go \
+	  --volume=$$HOME/Development:/root/Development \
 	  --volume=$$HOME/.ssh/:/root/.ssh/ \
 	  --volume=$$HOME/.cache/:/root/.cache/ \
 	  --volume=/tmp/.X11-unix:/tmp/.X11-unix \

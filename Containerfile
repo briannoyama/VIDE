@@ -63,6 +63,14 @@ RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" \
     && tfenv install 1.5.5 \
     && tfenv use 1.5.5
 
+# Odin support (note build script requires full clone of repo)
+RUN eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" \
+    && brew install odin \
+    && git clone -b master --single-branch https://github.com/DanielGavin/ols \
+    && (cd ols && ./build.sh && ./odinfmt.sh) \ 
+    && (cd ols && cp ols /usr/local/bin/ols && cp odinfmt /usr/local/bin/odinfmt)\
+    && rm -R ols
+
 COPY ./custom /root/.config/nvim/lua/custom
 
 RUN cat /root/.config/nvim/lua/custom/.bashrc >> /root/.bashrc \
