@@ -33,6 +33,7 @@ linux-ide:
 	  --env=TERM=xterm \
 	  --interactive \
 	  --net=host \
+	  --publish=8000:8000 \
 	  --rm \
 	  --tty \
 	  --volume=$$HOME/Development:/root/Development \
@@ -40,7 +41,7 @@ linux-ide:
 	  --volume=$$HOME/.cache/:/root/.cache/ \
 	  --volume=/tmp/.X11-unix:/tmp/.X11-unix \
 	  --workdir /root/$$BASE \
-	  'ide' bash -i -exec 'source /root/.bashrc && nvim'
+	  'ide' bash -c 'source /root/.bashrc && nvim'
 	-@xhost -local:
 
 clean:
