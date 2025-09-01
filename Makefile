@@ -1,5 +1,5 @@
 build:
-	podman build . -t ide
+	podman build . -t ide --ulimit nofile=8192:8192
 
 linux-debug:
 	-@xhost +local:
@@ -15,7 +15,7 @@ linux-debug:
 	  --tty \
 	  --volume=./:/root/VIDE \
 	  --volume=$$HOME/Development:/root/Development \
-	  --volume=./custom:/root/.config/nvim/lua/custom \
+	  --volume=./nvim:/root/.config/nvim/ \
 	  --volume=$$HOME/.ssh/:/root/.ssh/ \
 	  --volume=$$HOME/.cache/:/root/.cache/ \
 	  --volume=/tmp/.X11-unix:/tmp/.X11-unix \

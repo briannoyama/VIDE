@@ -1,3 +1,5 @@
+require "nvchad.options"
+
 -- Copy paste to system clipboard
 vim.api.nvim_set_option_value("clipboard", "unnamedplus", {})
 
@@ -30,29 +32,3 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 vim.o.shell = "/usr/bin/bash"
 
--- Custom key maps here
-local map = vim.keymap.set
-
-map("n", ";", ":", { desc = "CMD enter command mode" })
-map({ "n", "i" }, "<C-b>", function()
-  require("dap").toggle_breakpoint()
-end, { desc = "Toggle Breakpoint" })
-
----@type ChadrcConfig
-local M = {}
-M.ui = {
-  theme = "nightfox",
-  theme_toggle = { "nightfox", "penumbra_light" },
-  statusline = {
-    theme = "default",
-    separator_style = "default",
-    overriden_modules = require "custom.configs.hydra-status",
-  },
-}
-
-M.plugins = "custom.plugins"
-M.lazy_nvim = {
-  defaults = { lazy = false },
-}
-
-return M

@@ -1,5 +1,4 @@
-local plugins = {
-	require("custom.configs.avante"),
+return {
 	{
 		"leoluz/nvim-dap-go",
 		ft = "go",
@@ -14,17 +13,16 @@ local plugins = {
 			vim.fn.sign_define("DapBreakpoint", { text = "🛑" })
 		end,
 	},
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require "configs.lspconfig"
+    end,
+  },
 	{
 		"nvimtools/hydra.nvim",
 		config = function()
-			require("custom.configs.hydras")
-		end,
-	},
-	{
-		"neovim/nvim-lspconfig",
-		config = function()
-			require("plugins.configs.lspconfig")
-			require("custom.configs.lspconfig")
+			require("configs.hydras")
 		end,
 	},
 	{
@@ -32,35 +30,37 @@ local plugins = {
 		opts = {
 			ensure_installed = {
 				"bash",
+        "css",
 				"go",
 				"gomod",
 				"hcl",
-				"odin",
+        "html",
+  			"lua",
 				"python",
 				"terraform",
 				"typescript",
+        "vimdoc",
 			},
 		},
 	},
 	{
 		"olexsmir/gopher.nvim",
+		version = "v0.2.0",
 		ft = "go",
-		config = function(_, opts)
-			require("gopher").setup(opts)
-		end,
 		build = function()
 			vim.cmd([[silent! GoInstallDeps]])
 		end,
+		opts = {},
 	},
-	{
-		"stevearc/conform.nvim",
+  {
+    "stevearc/conform.nvim",
 		cmd = { "ConformInfo" },
-		event = "BufWritePre",
-		opts = require("custom.configs.conform"),
+    event = 'BufWritePre', -- uncomment for format on save
+    opts = require "configs.conform",
 		init = function()
 			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 		end,
-	},
+  },
 	{
 		"theHamsta/nvim-dap-virtual-text",
 		dependencies = {
@@ -74,6 +74,9 @@ local plugins = {
 			})
 		end,
 	},
+
+
+  -- test new blink
+  -- { import = "nvchad.blink.lazyspec" },
 }
 
-return plugins

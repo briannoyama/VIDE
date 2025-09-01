@@ -24,13 +24,15 @@ return {
   },
   opts = {
     provider = "gemini",
-
-    gemini = {
-      -- @see https://ai.google.dev/gemini-api/docs/models/gemini
-      model = vim.env.GEMINI_MODEL,
-      -- model = "gemini-2.5-flash-preview-04-17",
-      temperature = 0,
-      max_tokens = 4096,
+    providers = {
+      gemini = {
+        endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+        model = vim.env.GEMINI_MODEL,
+        extra_request_body = {
+          temperature = 0,
+          max_tokens = 4096,
+        },
+      },
     },
     selector = {
       exclude_auto_select = { "NvimTree" },
