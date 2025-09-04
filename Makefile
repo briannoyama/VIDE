@@ -2,7 +2,7 @@ build:
 	podman build . -t ide --ulimit nofile=8192:8192
 
 linux-debug:
-	-@xhost +local:
+	-@xhost +local: > /dev/null
 	-@podman run \
 	  --device /dev/dri \
 	  --env=DISPLAY \
@@ -21,10 +21,10 @@ linux-debug:
 	  --volume=/tmp/.X11-unix:/tmp/.X11-unix \
 	  --workdir /root \
 	  'ide'
-	-@xhost -local:
+	-@xhost -local: > /dev/null
 	
 linux-ide:
-	-@xhost +local:
+	-@xhost +local: > /dev/null
 	-@podman run \
 	  --device /dev/dri \
 	  --env=DISPLAY \
@@ -33,7 +33,6 @@ linux-ide:
 	  --env=TERM=xterm \
 	  --interactive \
 	  --net=host \
-	  --publish=8000:8000 \
 	  --rm \
 	  --tty \
 	  --volume=$$HOME/Development:/root/Development \
@@ -41,8 +40,8 @@ linux-ide:
 	  --volume=$$HOME/.cache/:/root/.cache/ \
 	  --volume=/tmp/.X11-unix:/tmp/.X11-unix \
 	  --workdir /root/$$BASE \
-	  'ide' bash -i -c 'source /root/.bashrc && nvim'
-	-@xhost -local:
+	  'ide' 'nvim'
+	-@xhost -local: > /dev/null
 
 clean:
 	podman rmi ide 

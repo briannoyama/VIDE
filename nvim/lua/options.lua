@@ -7,10 +7,11 @@ vim.api.nvim_set_option_value("clipboard", "unnamedplus", {})
 local auto_file = vim.fn.getcwd() .. "/.auto.vim"
 
 local function close_nv_win(id)
-  for _, opts in pairs(vim.g.nvchad_terms) do
-    if opts.id == id then
-      vim.api.nvim_win_close(opts, true)
-      return opts
+  if vim.g and vim.g.nvchad_terms then
+    for _, opts in pairs(vim.g.nvchad_terms) do
+      if opts.id == id then
+        vim.api.nvim_win_close(opts, true)
+      end
     end
   end
 end

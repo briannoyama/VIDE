@@ -69,9 +69,12 @@ RUN git clone --depth=1 -b release-0.11 --single-branch https://github.com/neovi
 
 COPY ./nvim /root/.config/nvim/
 
+# Set up bash
 RUN cat /root/.config/nvim/.bashrc >> /root/.bashrc \
     && rm /root/.config/nvim/.bashrc \
-    && echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.bashrc
+    && echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.bashrc \
+    && apt-get install -y locales \
+    && locale-gen en_US.UTF-8
 
 RUN nvim --headless +qall
     

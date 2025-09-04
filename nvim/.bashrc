@@ -8,3 +8,8 @@ export PATH=/root/go/bin:$PATH
 # Gen AI variables
 export GEMINI_API_KEY
 export GEMINI_MODEL
+
+# Locale
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US:en
+export LC_ALL=en_US.UTF-8
