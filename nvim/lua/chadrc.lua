@@ -22,6 +22,7 @@ M.ui = {
     },
     order = { "debug", "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor" },
   },
+  telescope = { style = "bordered" },
 }
 -- M.nvdash = { load_on_startup = true }
 -- M.ui = {
