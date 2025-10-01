@@ -73,7 +73,7 @@ COPY ./nvim /root/.config/nvim/
 RUN cat /root/.config/nvim/.bashrc >> /root/.bashrc \
     && rm /root/.config/nvim/.bashrc \
     && echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /root/.bashrc \
-    && apt-get install -y locales \
+    && apt-get update && apt-get install -y locales \
     && locale-gen en_US.UTF-8
 
 RUN nvim --headless +qall

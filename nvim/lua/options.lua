@@ -50,4 +50,15 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
+vim.api.nvim_create_autocmd("BufWritePost", {
+  callback = function()
+    if vim.fn.filereadable(vim.loop.cwd() .. "/on_save.sh") == 1 then
+      vim.schedule(function()
+        vim.cmd("!" .. vim.loop.cwd() .. "/on_save.sh " .. vim.fn.expand "%")
+      end)
+      vim.cmd 'echo "Executing on_save.sh"'
+    end
+  end,
+})
+
 vim.o.shell = "/usr/bin/bash"
