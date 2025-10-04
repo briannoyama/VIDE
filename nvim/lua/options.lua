@@ -39,13 +39,13 @@ vim.api.nvim_create_autocmd("VimLeave", {
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     if vim.fn.filereadable(auto_file) == 1 then
-      vim.cmd('echo "Loading ' .. auto_file .. '"')
+      print("Loading " .. auto_file)
       -- After VimEnter other NVChad stuff needs to load, so wait 1ms
       vim.defer_fn(function()
         vim.cmd("source " .. auto_file)
       end, 1)
     else
-      vim.cmd 'echo "Auto resume session (.auto.vim) not found"'
+      print "Auto resume session (.auto.vim) not found"
     end
   end,
 })
@@ -53,10 +53,20 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.api.nvim_create_autocmd("BufWritePost", {
   callback = function()
     if vim.fn.filereadable(vim.loop.cwd() .. "/on_save.sh") == 1 then
-      vim.schedule(function()
-        vim.cmd("!" .. vim.loop.cwd() .. "/on_save.sh " .. vim.fn.expand "%")
-      end)
-      vim.cmd 'echo "Executing on_save.sh"'
+      local err = ""
+      vim.fn.jobstart({ "./on_save.sh", vim.fn.expand "%" }, {
+        cwd = vim.loop.cwd(),
+        on_exit = function(_, code, _)
+          if code == 0 then
+            print "on_save.sh success"
+          else
+            print("on_save.sh failed\n" .. err)
+          end
+        end,
+        on_stderr = function(_, data, _)
+          err = table.concat({ err, table.concat(data, "\n") }, "\n")
+        end,
+      })
     end
   end,
 })
