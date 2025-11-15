@@ -29,4 +29,6 @@ map("n", "<leader>gb", require("gitsigns").blame_line, { desc = "Blame line" })
 map("n", "<leader>gc", "<cmd> Telescope git_commits <CR>", { desc = "Git commits" })
 map("n", "<leader>gt", "<cmd> Telescope git_status <CR>", { desc = "Git status" })
 
+-- Replay actions in q register
+map("n", "<C-q>", "@q", { desc = "Replay actions" })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
