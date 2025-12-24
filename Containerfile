@@ -38,6 +38,7 @@ RUN apt-get update && bash -c 'apt-get install -y \
     && go install mvdan.cc/gofumpt@latest \
     && go install github.com/segmentio/golines@latest \
     && go install github.com/go-delve/delve/cmd/dlv@latest \
+    && go install github.com/briannoyama/semantic-commit/...@latest \
     && cp -R /root/go/bin/* /usr/local/bin/ 
 
 # Language servers + formaters + linters

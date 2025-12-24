@@ -31,13 +31,20 @@ local servers = {
   },
   ts_ls = {},
   terraformls = {},
-  yamlls = {},
+  yamlls = {
+    settings = {
+      yaml = {
+        format = {
+          printWidth = 160,
+        },
+      },
+    },
+  },
 }
 
 for name, opts in pairs(servers) do
-  vim.lsp.enable(name)  -- nvim v0.11.0 or above required
+  vim.lsp.enable(name) -- nvim v0.11.0 or above required
   vim.lsp.config(name, opts) -- nvim v0.11.0 or above required
 end
 
-
--- read :h vim.lsp.config for changing options of lsp servers 
+-- read :h vim.lsp.config for changing options of lsp servers
