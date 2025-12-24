@@ -1,14 +1,15 @@
 local options = {
   formatters_by_ft = {
     css = { "prettier" },
-		golang = { "gofumpt", "goimports-reviser", "golines" },
-		graphql = { "prettier" },
+    golang = { "gofumpt", "goimports-reviser", "golines" },
+    graphql = { "prettier" },
     html = { "prettier" },
-		lua = { "stylua" },
-		markdown = { "prettier" },
-		python = { "yapf" },
-		terraform = { "terraform_fmt", "terragrunt_hclfmt" },
-		typescript = { "prettier" },
+    lua = { "stylua" },
+    markdown = { "prettier" },
+    python = { "yapf" },
+    terraform = { "terraform_fmt", "terragrunt_hclfmt" },
+    typescript = { "prettier" },
+    yaml = {}, -- Attempting to turn off formating for yaml files
   },
 
   format_on_save = {

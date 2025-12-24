@@ -35,7 +35,7 @@ local servers = {
     settings = {
       yaml = {
         format = {
-          printWidth = 160,
+          enable = false,
         },
       },
     },
